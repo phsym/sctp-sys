@@ -1,3 +1,6 @@
+
+//! Quick and (very) dirty example
+
 extern crate libc;
 extern crate sctp_sys;
 
@@ -15,7 +18,7 @@ fn main() {
     unsafe{
 //    	let sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     	let sock = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-    	println!("sock = {}", sock);
+    	assert!(sock >= 0, "Cannot create socket");
     	
     	let ip = Ipv4Addr::from_str("127.0.0.1").unwrap();
 	    let addr = sockaddr_in {
@@ -28,9 +31,11 @@ fn main() {
 	    println!("connecting");
 //	    let res = connect(sock, transmute(&addr), std::mem::size_of::<sockaddr_in>() as u32);
     	let res = sctp_connectx(sock, transmute(&addr), 1, &mut assoc as *mut sctp_assoc_t);
-    	println!("res : {}, assoc : {}", res, assoc);
+    	assert!(res == 0, "Cannot connect");
+    	println!("assoc : {}", assoc);
 	    let mut buf = [0u8; 1024];
 	    let rec = recv(sock, transmute(&mut buf), 1024, 0);
+	    assert!(rec > 0, "No data recived");
 	    println!("rec : {} -> {}", rec, from_utf8(&buf[0..rec as usize]).ok().expect("cannot decode string"));
     }
 }
