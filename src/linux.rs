@@ -1,6 +1,6 @@
 use libc::{c_int, size_t, c_ulong, c_ushort, c_void, ssize_t, sockaddr, socklen_t};
 
-use super::types::{sctp_assoc_t, sctp_sndrcvinfo};
+use super::common::{sctp_assoc_t, sctp_sndrcvinfo};
 
 extern "system" {
 	pub fn sctp_bindx(sock: c_int, sock_addr: *mut sockaddr, num: c_int, ty: c_int) -> c_int;
