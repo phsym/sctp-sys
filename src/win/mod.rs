@@ -1,7 +1,7 @@
 pub mod winsock;
 
 use libc::{c_int, size_t, c_ulong, c_ushort, c_void, ssize_t, SOCKET, sockaddr, socklen_t};
-use super::types::{sctp_assoc_t, sctp_sndrcvinfo};
+use super::common::{sctp_assoc_t, sctp_sndrcvinfo};
 
 extern "system" {
 	fn internal_sctp_bindx(sock: SOCKET, sock_addr: *mut sockaddr, num: c_int, ty: c_int) -> c_int;

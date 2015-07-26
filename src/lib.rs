@@ -10,5 +10,5 @@ pub mod linux;
 #[cfg(target_os="linux")]
 pub use linux::*;
 
-pub mod types;
-pub use types::*;
+pub mod common;
+pub use common::*;

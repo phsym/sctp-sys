@@ -2,8 +2,8 @@ use libc::{c_int, c_uint};
 
 pub const IPPROTO_SCTP: c_int = 132;
 
-pub const SCTP_BINDX_ADD_ADDR: c_int = 0x00008001;
-pub const SCTP_BINDX_REM_ADDR: c_int = 0x00008002;
+pub const SCTP_BINDX_ADD_ADDR: c_int = 0x01;
+pub const SCTP_BINDX_REM_ADDR: c_int = 0x02;
 
 
 // Flags
