@@ -1,6 +1,7 @@
 use libc::{c_int, c_uint};
 
 pub const IPPROTO_SCTP: c_int = 132;
+pub const SOCK_SEQPACKET: c_int = 5;
 
 pub const SCTP_BINDX_ADD_ADDR: c_int = 0x01;
 pub const SCTP_BINDX_REM_ADDR: c_int = 0x02;
@@ -29,6 +30,7 @@ pub const SCTP_PR_SCTP_RTX: u16 =  0x0003;
 #[allow(non_camel_case_types)]
 pub type sctp_assoc_t = c_uint;
 
+#[derive(Debug, Copy, Clone)]
 #[repr(C)]
 pub struct sctp_sndrcvinfo {
 	/// Stream sending to
