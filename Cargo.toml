@@ -4,6 +4,7 @@ name = "sctp-sys"
 version = "0.0.3"
 description = "Binding to libsctp for linux, and SctpDrv for windows. SctpDrv binding is experimental"
 repository = "https://github.com/phsym/sctp-sys"
+documentation = "http://phsym.github.io/sctp-sys"
 readme = "README.md"
 authors = [ "Pierre-Henri Symoneaux" ]
 keywords = ["transport", "network", "sctp", "libsctp", "socket"]
