@@ -1,2 +1,5 @@
 language: rust
 rust: 1.0.0
+
+before_script:
+  - sudo apt-get install libsctp1
