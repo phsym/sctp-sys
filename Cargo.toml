@@ -6,7 +6,7 @@ description = "Binding to libsctp for linux, and SctpDrv for windows. SctpDrv bi
 repository = "https://github.com/phsym/sctp-sys"
 readme = "README.md"
 authors = [ "Pierre-Henri Symoneaux" ]
-keywords = ["transport", "network", "sctp", "libsctp"]
+keywords = ["transport", "network", "sctp", "libsctp", "socket"]
 license = "MIT"
 
 build = "build.rs"
