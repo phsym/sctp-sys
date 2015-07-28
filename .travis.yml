@@ -2,4 +2,4 @@ language: rust
 rust: 1.0.0
 
 before_script:
-  - sudo apt-get install lksctp-tools
+  - sudo apt-get install libsctp1 libsctp-dev lksctp-tools
