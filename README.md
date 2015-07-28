@@ -1,4 +1,5 @@
 ![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)
+[![Build Status](https://travis-ci.org/phsym/sctp-sys.svg)](https://travis-ci.org/phsym/sctp-sys)
 [![Crates.io](https://img.shields.io/crates/v/sctp-sys.svg)](https://crates.io/crates/sctp-sys)
 
 # sctp-sys
