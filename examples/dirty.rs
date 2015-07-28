@@ -6,7 +6,7 @@ extern crate sctp_sys;
 
 use sctp_sys::{sctp_connectx, sctp_assoc_t, IPPROTO_SCTP};
 
-use libc::{AF_INET, SOCK_STREAM, IPPROTO_TCP, socket, connect, sockaddr_in, sockaddr, recv};
+use libc::{AF_INET, SOCK_STREAM, socket, sockaddr_in, recv};
 
 use std::net::Ipv4Addr;
 use std::str::{FromStr, from_utf8};
