@@ -11,4 +11,4 @@ pub mod linux;
 pub use linux::*;
 
 pub mod common;
-pub use common::*;
+pub use self::common::*;

@@ -1,3 +1,6 @@
+pub mod consts;
+pub use self::consts::*;
+
 use libc::{c_int, size_t, c_ulong, c_ushort, c_void, ssize_t, sockaddr, socklen_t};
 
 use super::common::{sctp_assoc_t, sctp_sndrcvinfo};
