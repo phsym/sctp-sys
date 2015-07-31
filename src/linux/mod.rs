@@ -11,7 +11,6 @@ extern "system" {
 	pub fn sctp_freepaddrs(addrs: *mut sockaddr);
 	pub fn sctp_freeladdrs(addrs: *mut sockaddr);
 	pub fn sctp_getaddrlen(family: c_int) -> c_int;
-	pub fn sctp_getassocid(s: c_int, addr: *mut sockaddr) -> sctp_assoc_t;
 	pub fn sctp_getpaddrs(s: c_int, assoc: sctp_assoc_t, addrs: *mut *mut sockaddr) -> c_int;
 	pub fn sctp_getladdrs(s: c_int, assoc: sctp_assoc_t, addrs: *mut *mut sockaddr) -> c_int;
 	pub fn sctp_opt_info(s: c_int, assoc: sctp_assoc_t, opt: c_int, arg: *mut c_void, size: *mut socklen_t) -> c_int;
