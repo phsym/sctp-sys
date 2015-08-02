@@ -40,6 +40,7 @@ extern "system" {
 	pub fn WSACleanup() -> libc::c_int;
 }
 
+/// Init winsock by calling `WSAStartup`
 pub fn init() {
     static START: Once = ONCE_INIT;
 
