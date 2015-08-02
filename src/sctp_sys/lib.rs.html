@@ -54,7 +54,27 @@
 <span id="12">12</span>
 <span id="13">13</span>
 <span id="14">14</span>
+<span id="15">15</span>
+<span id="16">16</span>
+<span id="17">17</span>
+<span id="18">18</span>
+<span id="19">19</span>
+<span id="20">20</span>
+<span id="21">21</span>
+<span id="22">22</span>
+<span id="23">23</span>
+<span id="24">24</span>
 </pre><pre class='rust '>
+<span class='doccomment'>//! This crate provides a binding to SCTP libraries.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Under Linux, the crate is bound to libsctp provided by lksctp-tools,</span>
+<span class='doccomment'>//! and under Windows, it is bound to libsctpsp provided by SctpDrv. However,</span>
+<span class='doccomment'>//! SctpDrv is unstable in Windows 7 and can cause BSOD.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! # Note</span>
+<span class='doccomment'>//! When using sctp-sys in Windows, `sctp_sys::win::winsock::init()` must be called</span>
+<span class='doccomment'>//! before doing anything, in order to startup winsock (with `WSAStartup` system call)</span>
+
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>target_os</span><span class='op'>=</span><span class='string'>&quot;windows&quot;</span>)]</span>

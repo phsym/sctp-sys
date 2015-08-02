@@ -61,7 +61,6 @@
 <span id="19">19</span>
 <span id="20">20</span>
 <span id="21">21</span>
-<span id="22">22</span>
 </pre><pre class='rust '>
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>consts</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='self'>self</span>::<span class='ident'>consts</span>::<span class='op'>*</span>;
@@ -76,7 +75,6 @@
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_freepaddrs</span>(<span class='ident'>addrs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>sockaddr</span>);
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_freeladdrs</span>(<span class='ident'>addrs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>sockaddr</span>);
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_getaddrlen</span>(<span class='ident'>family</span>: <span class='ident'>c_int</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
-	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_getassocid</span>(<span class='ident'>s</span>: <span class='ident'>c_int</span>, <span class='ident'>addr</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>sockaddr</span>) <span class='op'>-&gt;</span> <span class='ident'>sctp_assoc_t</span>;
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_getpaddrs</span>(<span class='ident'>s</span>: <span class='ident'>c_int</span>, <span class='ident'>assoc</span>: <span class='ident'>sctp_assoc_t</span>, <span class='ident'>addrs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>sockaddr</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_getladdrs</span>(<span class='ident'>s</span>: <span class='ident'>c_int</span>, <span class='ident'>assoc</span>: <span class='ident'>sctp_assoc_t</span>, <span class='ident'>addrs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>sockaddr</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
 	<span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>sctp_opt_info</span>(<span class='ident'>s</span>: <span class='ident'>c_int</span>, <span class='ident'>assoc</span>: <span class='ident'>sctp_assoc_t</span>, <span class='ident'>opt</span>: <span class='ident'>c_int</span>, <span class='ident'>arg</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>size</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>socklen_t</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
