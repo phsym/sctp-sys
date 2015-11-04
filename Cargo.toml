@@ -1,7 +1,7 @@
 [package]
 
 name = "sctp-sys"
-version = "0.0.5"
+version = "0.0.6"
 description = "Binding to libsctp for linux, and SctpDrv for windows. SctpDrv binding is experimental"
 repository = "https://github.com/phsym/sctp-sys"
 documentation = "http://phsym.github.io/sctp-sys"
@@ -13,4 +13,4 @@ license = "MIT"
 build = "build.rs"
 
 [dependencies]
-libc = "*"
+libc = "0.1.*"
