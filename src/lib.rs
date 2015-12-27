@@ -9,6 +9,7 @@
 //! before doing anything, in order to startup winsock (with `WSAStartup` system call)
 
 extern crate libc;
+extern crate winapi;
 
 #[cfg(target_os="windows")]
 pub mod win;

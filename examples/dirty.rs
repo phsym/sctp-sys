@@ -3,14 +3,32 @@
 
 extern crate libc;
 extern crate sctp_sys;
+extern crate winapi;
+extern crate ws2_32;
 
 use sctp_sys::{sctp_connectx, sctp_assoc_t, IPPROTO_SCTP};
 
-use libc::{AF_INET, SOCK_STREAM, socket, sockaddr_in, recv};
+#[cfg(not(windows))]
+use libc::{AF_INET, SOCK_STREAM, socket, sockaddr_in, recv, c_int as SOCKET};
+#[cfg(windows)]
+use winapi::ws2def::{AF_INET, SOCK_STREAM, SOCKADDR_IN as sockaddr_in};
+#[cfg(windows)]
+use winapi::winsock2::SOCKET;
+#[cfg(windows)]
+use ws2_32::{socket, recv};
+
 
 use std::net::Ipv4Addr;
 use std::str::{FromStr, from_utf8};
 use std::mem::transmute;
+
+#[cfg(not(windows))]
+fn check_sock(sock: SOCKET) {
+    assert!(sock >= 0, "Cannot create socket");
+}
+
+#[cfg(windows)]
+fn check_sock(_: SOCKET) {}
 
 fn main() {
     println!("Hello, world!");
@@ -18,8 +36,8 @@ fn main() {
     unsafe{
 //    	let sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     	let sock = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
-    	assert!(sock >= 0, "Cannot create socket");
-    	
+        check_sock(sock);
+
     	let ip = Ipv4Addr::from_str("127.0.0.1").unwrap();
 	    let addr = sockaddr_in {
 	    	sin_family: AF_INET as u16,
