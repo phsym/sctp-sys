@@ -1,6 +1,5 @@
 use libc::c_int;
-use winapi::minwindef::WORD;
-use winapi::winsock2::{WSADATA, LPWSADATA};
+use winapi::{WORD, WSADATA, LPWSADATA};
 use std::sync::{Once, ONCE_INIT};
 use std::mem;
 //use std::rt;

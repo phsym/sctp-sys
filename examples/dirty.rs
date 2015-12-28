@@ -12,9 +12,7 @@ use sctp_sys::*;
 #[cfg(not(windows))]
 use libc::{AF_INET, SOCK_STREAM, socket, listen, accept, close, send, sockaddr_in, recv, c_int as SOCKET};
 #[cfg(windows)]
-use winapi::ws2def::{AF_INET, SOCK_STREAM, SOCKADDR_IN as sockaddr_in};
-#[cfg(windows)]
-use winapi::winsock2::SOCKET;
+use winapi::{AF_INET, SOCK_STREAM,SOCKET, INVALID_SOCKET, SOCKADDR_IN as sockaddr_in};
 #[cfg(windows)]
 use ws2_32::{socket, recv, listen, accept, send, closesocket as close};
 
@@ -35,7 +33,9 @@ fn check_sock(sock: SOCKET) {
 }
 
 #[cfg(windows)]
-fn check_sock(_: SOCKET) {}
+fn check_sock(sock: SOCKET) {
+    assert!(sock != INVALID_SOCKET, "Cannot create socket");
+}
 
 fn main() {
     println!("Hello, world!");
