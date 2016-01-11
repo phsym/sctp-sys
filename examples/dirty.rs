@@ -22,7 +22,7 @@ use std::mem::transmute;
 use std::thread;
 use std::sync::{Barrier, Arc};
 
-#[cfg(linux)]
+#[cfg(target_os="linux")]
 mod imports {
     pub use libc::{AF_INET, SOCK_STREAM, socket, listen, accept, close, send, sockaddr_in, recv, c_int as SOCKET};
     pub type Buflen = usize;
@@ -30,7 +30,7 @@ mod imports {
         assert!(sock >= 0, "Cannot create socket");
     }
 }
-#[cfg(windows)]
+#[cfg(target_os="windows")]
 mod imports {
     pub use winapi::{AF_INET, SOCK_STREAM,SOCKET, INVALID_SOCKET, SOCKADDR_IN as sockaddr_in};
     pub use ws2_32::{socket, recv, listen, accept, send, closesocket as close};
