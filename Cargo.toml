@@ -8,7 +8,7 @@ documentation = "http://phsym.github.io/sctp-sys"
 readme = "README.md"
 authors = [ "Pierre-Henri Symoneaux" ]
 keywords = ["transport", "network", "sctp", "libsctp", "socket"]
-license = "MIT OR Apache-2.0"
+license = "MIT/Apache-2.0"
 
 build = "build.rs"
 

@@ -1,4 +1,11 @@
 
+// Copyright 2016 sctp-sys Developers
+//
+// Licensed under the Apache License, Version 2.0, <LICENSE-APACHE or
+// http://apache.org/licenses/LICENSE-2.0> or the MIT license <LICENSE-MIT or
+// http://opensource.org/licenses/MIT>, at your option. This file may not be
+// copied, modified, or distributed except according to those terms.
+
 //! Quick and (very) dirty example.
 //! Not many checks are performed
 
@@ -9,36 +16,35 @@ extern crate ws2_32;
 
 use sctp_sys::*;
 
-#[cfg(not(windows))]
-use libc::{AF_INET, SOCK_STREAM, socket, listen, accept, close, send, sockaddr_in, recv, c_int as SOCKET};
-#[cfg(windows)]
-use winapi::{AF_INET, SOCK_STREAM,SOCKET, INVALID_SOCKET, SOCKADDR_IN as sockaddr_in};
-#[cfg(windows)]
-use ws2_32::{socket, recv, listen, accept, send, closesocket as close};
-
 use std::net::Ipv4Addr;
 use std::str::{FromStr, from_utf8};
 use std::mem::transmute;
 use std::thread;
 use std::sync::{Barrier, Arc};
 
-#[cfg(windows)]
-type Buflen = i32;
-#[cfg(not(windows))]
-type Buflen = usize;
-
-#[cfg(not(windows))]
-fn check_sock(sock: SOCKET) {
-    assert!(sock >= 0, "Cannot create socket");
+#[cfg(linux)]
+mod imports {
+    pub use libc::{AF_INET, SOCK_STREAM, socket, listen, accept, close, send, sockaddr_in, recv, c_int as SOCKET};
+    pub type Buflen = usize;
+    pub fn check_sock(sock: SOCKET) {
+        assert!(sock >= 0, "Cannot create socket");
+    }
 }
-
 #[cfg(windows)]
-fn check_sock(sock: SOCKET) {
-    assert!(sock != INVALID_SOCKET, "Cannot create socket");
+mod imports {
+    pub use winapi::{AF_INET, SOCK_STREAM,SOCKET, INVALID_SOCKET, SOCKADDR_IN as sockaddr_in};
+    pub use ws2_32::{socket, recv, listen, accept, send, closesocket as close};
+    pub type Buflen = i32;
+    pub fn check_sock(sock: SOCKET) {
+        assert!(sock != INVALID_SOCKET, "Cannot create socket");
+    }
 }
+use imports::*;
 
 fn main() {
     println!("Hello, world!");
+
+    // sctp_sys::winsock::init();
 
     let rdv = Arc::new(Barrier::new(2));
 
@@ -47,7 +53,6 @@ fn main() {
         thread::spawn(|| run_server(rdv))
     };
 
-//    sctp_sys::winsock::init();
     unsafe{
     	let sock = socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
         check_sock(sock);

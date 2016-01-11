@@ -1,3 +1,10 @@
+// Copyright 2016 sctp-sys Developers
+//
+// Licensed under the Apache License, Version 2.0, <LICENSE-APACHE or
+// http://apache.org/licenses/LICENSE-2.0> or the MIT license <LICENSE-MIT or
+// http://opensource.org/licenses/MIT>, at your option. This file may not be
+// copied, modified, or distributed except according to those terms.
+
 use libc::c_int;
 
 pub const SCTP_BINDX_ADD_ADDR: c_int = 0x01;
@@ -67,5 +74,3 @@ pub const SCTP_ADDR_OVER: c_int = 2;  /* Override the primary destination. */
 pub const SCTP_ABORT: c_int = 4;        /* Send an ABORT message to the peer. */
 pub const SCTP_SACK_IMMEDIATELY: c_int = 8;      /* SACK should be sent without delay */
 //pub const SCTP_EOF=MSG_FIN;    /* Initiate graceful shutdown process. */
-
-
