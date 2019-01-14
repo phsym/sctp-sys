@@ -14,7 +14,7 @@ build = "build.rs"
 
 [dependencies]
 libc = "^0.2"
-winapi = "^0.2"
+winapi = "^0.3"
 
 [dev-dependencies]
 ws2_32-sys = "^0.2"
