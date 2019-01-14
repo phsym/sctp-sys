@@ -1,5 +1,5 @@
 
-// Copyright 2016 sctp-sys Developers
+// Copyright 2019 sctp-sys Developers
 //
 // Licensed under the Apache License, Version 2.0, <LICENSE-APACHE or
 // http://apache.org/licenses/LICENSE-2.0> or the MIT license <LICENSE-MIT or
@@ -12,7 +12,6 @@
 extern crate libc;
 extern crate sctp_sys;
 extern crate winapi;
-extern crate ws2_32;
 
 use sctp_sys::*;
 
@@ -32,8 +31,8 @@ mod imports {
 }
 #[cfg(target_os="windows")]
 mod imports {
-    pub use winapi::{AF_INET, SOCK_STREAM,SOCKET, INVALID_SOCKET, SOCKADDR_IN as sockaddr_in};
-    pub use ws2_32::{socket, recv, listen, accept, send, closesocket as close};
+    pub use winapi::shared::ws2def::{AF_INET, SOCK_STREAM, SOCKADDR_IN as sockaddr_in};
+    pub use winapi::um::winsock2::{socket, recv, listen, accept, send, closesocket as close, SOCKET, INVALID_SOCKET};
     pub type Buflen = i32;
     pub fn check_sock(sock: SOCKET) {
         assert!(sock != INVALID_SOCKET, "Cannot create socket");

@@ -1,4 +1,4 @@
-// Copyright 2016 sctp-sys Developers
+// Copyright 2019 sctp-sys Developers
 //
 // Licensed under the Apache License, Version 2.0, <LICENSE-APACHE or
 // http://apache.org/licenses/LICENSE-2.0> or the MIT license <LICENSE-MIT or
@@ -10,9 +10,9 @@ pub mod consts;
 pub use self::consts::*;
 
 use libc::{c_int, size_t, c_ulong, c_ushort, c_void, ssize_t};
-use winapi::winsock2::SOCKET;
-use winapi::ws2def::SOCKADDR as sockaddr;
-use winapi::ws2tcpip::socklen_t;
+use winapi::um::winsock2::SOCKET;
+use winapi::shared::ws2def::SOCKADDR as sockaddr;
+use winapi::um::ws2tcpip::socklen_t;
 use super::common::{sctp_assoc_t, sctp_sndrcvinfo};
 
 extern "system" {

@@ -1,4 +1,4 @@
-// Copyright 2016 sctp-sys Developers
+// Copyright 2019 sctp-sys Developers
 //
 // Licensed under the Apache License, Version 2.0, <LICENSE-APACHE or
 // http://apache.org/licenses/LICENSE-2.0> or the MIT license <LICENSE-MIT or
@@ -6,10 +6,10 @@
 // copied, modified, or distributed except according to those terms.
 
 use libc::c_int;
-use winapi::{WORD, WSADATA, LPWSADATA};
+use winapi::um::winsock2::{WSADATA, LPWSADATA};
+use winapi::shared::minwindef::WORD;
 use std::sync::{Once, ONCE_INIT};
 use std::mem;
-//use std::rt;
 
 #[link(name = "ws2_32")]
 #[link(name = "userenv")]
