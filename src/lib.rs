@@ -21,12 +21,12 @@ extern crate winapi;
 #[cfg(target_os="windows")]
 pub mod win;
 #[cfg(target_os="windows")]
-pub use win::*;
+pub use crate::win::*;
 
 #[cfg(target_os="linux")]
 pub mod linux;
 #[cfg(target_os="linux")]
-pub use linux::*;
+pub use crate::linux::*;
 
 pub mod common;
-pub use self::common::*;
+pub use crate::common::*;

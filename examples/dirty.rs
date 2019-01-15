@@ -38,7 +38,7 @@ mod imports {
         assert!(sock != INVALID_SOCKET, "Cannot create socket");
     }
 }
-use imports::*;
+use crate::imports::*;
 
 fn main() {
     println!("Hello, world!");
