@@ -7,32 +7,28 @@
 
 use libc::c_int;
 
-pub const SCTP_BINDX_ADD_ADDR: c_int =		0x00008001;
-pub const SCTP_BINDX_REM_ADDR: c_int =		0x00008002;
-
+pub const SCTP_BINDX_ADD_ADDR: c_int = 0x00008001;
+pub const SCTP_BINDX_REM_ADDR: c_int = 0x00008002;
 
 // Flags
 /// Start a shutdown procedures
-pub const SCTP_EOF: u16 =          0x0100;
+pub const SCTP_EOF: u16 = 0x0100;
 ///Send an ABORT to peer
-pub const SCTP_ABORT: u16 =        0x0200;
+pub const SCTP_ABORT: u16 = 0x0200;
 /// Message is un-ordered
-pub const SCTP_UNORDERED: u16 =    0x0400;
+pub const SCTP_UNORDERED: u16 = 0x0400;
 /// Override the primary-address
-pub const SCTP_ADDR_OVER: u16 =    0x0800;
+pub const SCTP_ADDR_OVER: u16 = 0x0800;
 /// Send this on all associations for the endpoint
-pub const SCTP_SENDALL: u16 =      0x1000;
+pub const SCTP_SENDALL: u16 = 0x1000;
 
 // The lower byte is an enumeration of PR-SCTP policies
 /// Time based PR-SCTP
-pub const SCTP_PR_SCTP_TTL: u16 =  0x0001;
+pub const SCTP_PR_SCTP_TTL: u16 = 0x0001;
 /// Buffer based PR-SCTP
-pub const SCTP_PR_SCTP_BUF: u16 =  0x0002;
+pub const SCTP_PR_SCTP_BUF: u16 = 0x0002;
 /// Number of retransmissions based PR-SCTP
-pub const SCTP_PR_SCTP_RTX: u16 =  0x0003;
-
-
-
+pub const SCTP_PR_SCTP_RTX: u16 = 0x0003;
 
 /*
  * user socket options: socket API defined

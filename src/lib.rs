@@ -18,14 +18,14 @@
 extern crate libc;
 extern crate winapi;
 
-#[cfg(target_os="windows")]
+#[cfg(target_os = "windows")]
 pub mod win;
-#[cfg(target_os="windows")]
+#[cfg(target_os = "windows")]
 pub use crate::win::*;
 
-#[cfg(target_os="linux")]
+#[cfg(target_os = "linux")]
 pub mod linux;
-#[cfg(target_os="linux")]
+#[cfg(target_os = "linux")]
 pub use crate::linux::*;
 
 pub mod common;

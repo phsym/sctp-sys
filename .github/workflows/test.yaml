@@ -20,10 +20,10 @@ jobs:
         components: clippy,rustfmt
     - run: sudo apt-get install libsctp1 libsctp-dev lksctp-tools
 
-    - name: Build
-      run: cargo build --verbose
+    - name: Build examples
+      run: cargo build --verbose --examples --all
     - name: Run tests
-      run: cargo test --verbose
+      run: cargo test --verbose --all
   
   lint:
     runs-on: ubuntu-latest

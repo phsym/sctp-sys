@@ -11,14 +11,13 @@ pub const SOL_SCTP: c_int = 132;
 pub const IPPROTO_SCTP: c_int = 132;
 pub const SOCK_SEQPACKET: c_int = 5;
 
-
 #[allow(non_camel_case_types)]
 pub type sctp_assoc_t = c_uint;
 
 #[derive(Debug, Copy, Clone)]
 #[repr(C)]
 pub struct sctp_sndrcvinfo {
-	/// Stream sending to
+    /// Stream sending to
     pub sinfo_stream: u16,
     /// Valid for recv only
     pub sinfo_ssn: u16,
@@ -35,5 +34,5 @@ pub struct sctp_sndrcvinfo {
     /// valid for recv only
     pub sinfo_cumtsn: u32,
     /// The association id
-    pub sinfo_assoc_id: sctp_assoc_t
+    pub sinfo_assoc_id: sctp_assoc_t,
 }
