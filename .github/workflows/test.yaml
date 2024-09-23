@@ -16,7 +16,6 @@ jobs:
     - uses: actions/checkout@v4
     - uses: dtolnay/rust-toolchain@1.81
       with:
-        target: ${{ inputs.target }}
         components: clippy,rustfmt
     - run: sudo apt-get install libsctp1 libsctp-dev lksctp-tools
 
@@ -31,13 +30,12 @@ jobs:
     - uses: actions/checkout@v4
     - uses: dtolnay/rust-toolchain@1.81
       with:
-        target: ${{ inputs.target }}
         components: clippy,rustfmt
     - name: Check formatting
       run: cargo fmt --check --all
     - name: Run Cargo check
-      run: cargo check --all --all-features --all-targets --locked
+      run: cargo check --all --all-features --all-targets
     - name: Run Clippy linter
-      run: cargo clippy --all --all-features --all-targets --locked -- -D clippy::all
+      run: cargo clippy --all --all-features --all-targets -- -D clippy::all
 
 

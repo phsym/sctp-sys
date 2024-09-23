@@ -64,25 +64,33 @@ fn main() {
         let addr = sockaddr_in {
             sin_family: AF_INET as u16,
             sin_port: 3868u16.to_be(),
-            sin_addr: transmute(ip.octets()),
+            sin_addr: transmute::<[u8; 4], libc::in_addr>(ip.octets()),
             sin_zero: [0; 8],
         };
         let mut assoc: sctp_assoc_t = 0;
         rdv.wait();
         println!("connecting");
         //	    let res = connect(sock, transmute(&addr), std::mem::size_of::<sockaddr_in>() as u32);
-        let res = sctp_connectx(sock, transmute(&addr), 1, &mut assoc as *mut sctp_assoc_t);
+        let res = sctp_connectx(
+            sock,
+            &addr as *const libc::sockaddr_in as *mut libc::sockaddr,
+            1,
+            &mut assoc as *mut sctp_assoc_t,
+        );
         assert!(res == 0, "Cannot connect");
         println!("assoc : {}", assoc);
         let mut buf = [0u8; 1024];
-        let rec = recv(sock, transmute(&mut buf), 1024, 0);
+        let rec = recv(
+            sock,
+            &mut buf as *mut [u8; 1024] as *mut libc::c_void,
+            1024,
+            0,
+        );
         assert!(rec > 0, "No data recived");
         print!("rec : {} ", rec);
         println!(
             "-> {}",
-            from_utf8(&buf[0..rec as usize])
-                .ok()
-                .expect("cannot decode string")
+            from_utf8(&buf[0..rec as usize]).expect("cannot decode string")
         );
         close(sock);
     }
@@ -100,19 +108,33 @@ fn run_server(rdv: Arc<Barrier>) {
         let mut addr = sockaddr_in {
             sin_family: AF_INET as u16,
             sin_port: 3868u16.to_be(),
-            sin_addr: transmute(ip.octets()),
+            sin_addr: transmute::<[u8; 4], libc::in_addr>(ip.octets()),
             sin_zero: [0; 8],
         };
-        sctp_bindx(sock, transmute(&mut addr), 1, consts::SCTP_BINDX_ADD_ADDR);
+        sctp_bindx(
+            sock,
+            &mut addr as *mut libc::sockaddr_in as *mut libc::sockaddr,
+            1,
+            consts::SCTP_BINDX_ADD_ADDR,
+        );
         listen(sock, 1);
         let mut l = 0;
         rdv.wait();
         println!("Accepting connection");
-        let cli = accept(sock, transmute(&mut addr), &mut l);
+        let cli = accept(
+            sock,
+            &mut addr as *mut libc::sockaddr_in as *mut libc::sockaddr,
+            &mut l,
+        );
         println!("Connection received");
         check_sock(cli);
         let buf = "Hello World\n".as_bytes();
-        send(cli, transmute(buf.as_ptr()), buf.len() as Buflen, 0);
+        send(
+            cli,
+            transmute::<*const u8, *const libc::c_void>(buf.as_ptr()),
+            buf.len() as Buflen,
+            0,
+        );
         close(cli);
         close(sock);
     }
